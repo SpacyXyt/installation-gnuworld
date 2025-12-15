@@ -11,7 +11,7 @@ Documentation sur l'installation et la configuration de GnuWorld sous 24.04.3 LT
 ```bash
 root@mail:~# apt update
 root@mail:~# apt upgrade
-root@mail:~# apt-get install -y byacc flex screen make cmake zip perl automake git wget ufw net-tools mlocate gcc oidentd libpqxx-dev tcl-dev build-essential
+root@mail:~# apt-get install -y byacc flex screen make cmake zip perl automake git wget ufw net-tools gcc oidentd libpqxx-dev tcl-dev build-essential
 ```
 
 # 2. Configuration du pare-feu avec UFW
@@ -66,4 +66,9 @@ sudo ufw allow 110/tcp      # POP3
 sudo ufw allow 6667:7000/tcp # Plage de ports
 sudo ufw allow 6667:7000/udp
 sudo ufw allow 4400/tcp     # Port personnalisé
+```
+
+## 2. Vérifier les règles :
+```bash
+sudo ufw status verbose
 ```
