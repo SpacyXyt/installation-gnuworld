@@ -72,3 +72,32 @@ sudo ufw allow 4400/tcp     # Port personnalisé
 ```bash
 sudo ufw status verbose
 ```
+
+## 3. Activer le pare-feu (une fois tous les ports ouverts) :
+```bash
+sudo ufw enable
+```
+
+## Dépannage
+- Erreur de connexion SSH ? Vérifiez que le port SSH est bien ouvert et correspond à celui configuré dans /etc/ssh/sshd_config.
+- Problème avec les emails ? Assurez-vous que les ports 465 ou 587 sont ouverts si vous utilisez SMTP sécurisé.
+
+## ❓ Besoin d'aide ?
+Si vous avez des questions ou des doutes sur la configuration, n'hésitez pas à demander avant d'activer le pare-feu.
+
+# 3. Installation de orientd
+
+```bash
+root@ircd:~# service oidentd start
+```
+
+**NOTE: Verifier que le service est actif!**
+
+```bash
+root@ircd:~# ps aux | grep oidentd
+	oident     10035  0.0  0.0   5252  2188 ?        Ss   May20   0:00 /usr/sbin/oidentd -S -mf -l 10 -u oident -g oident -P 192.168.1.1
+	root      125101  0.0  0.0   6432   736 pts/0    S+   14:46   0:00 grep --color=auto oidentd
+```
+
+**NOTE: Verifier que la configuration d'UFW est correcte et que le port 113 est ouvert.**
+
