@@ -102,13 +102,13 @@ root@mail:~# su - gnuworld
 Installer le tar du repo github de GnuWorld
 
 ```bash
-gnuworld@ircd:~# wget https://github.com/GNUWorldChannel/GNUWorld2021/raw/master/gnuworld_2021.tar.gz
+gnuworld@ircd:~# wget https://raw.githubusercontent.com/SpacyXyt/installation-gnuworld/refs/heads/Release/gnuworld-2025.zip
 ```
 
 Extraire le tar installer depuis le repo
 
 ```bash
-gnuworld@mail:~# tar -xvf gnuworld_2021.tar.gz
+gnuworld@mail:~# unzip gnuworld_2021.tar.gz
 ```
 
 Acceder au dossier de GnuWorld
@@ -129,7 +129,11 @@ Configuration du projet GnuWorld pour la compilation
 gnuworld@mail:~# ./configure --enable-modules=ccontrol,cservice,openchanfix --with-pgsql-home=/usr/local/pgsql --with-extra-includes=/usr/include/postgresql/ 
 ```
 
-Compilation du projet
+## ⚠️ Avant de continuer
+
+## Compilation de GnuWorld
+
+Compilation du projet 
 
 ```bash
 gnuworld@mail:~# make
@@ -143,8 +147,29 @@ gnuworld@mail:~# make install
 
 **NOTE**: Maintenant nous allons crée le SQL et importer les fichiers sql dans la DB!
 
+**NOTE**: Dans cette étape nous serons toujours dans le dossier: /home/gnuworld/gnuworld maintenant nous allons rentrer dans le dossier DOC.
+
 ```bash
-gnuworld@mail:~# tar -xvf gnuworld_2021.tar.gz
+gnuworld@ircd:/gnuworld$ cd doc/ 
 ```
 
+```bash
+gnuworld@ircd:/gnuworld/doc$ <now we are here.
+```
+
+```bash
+gnuworld@ircd:/gnuworld/doc$ chmod +x do-db.sh 
+```
+
+```bash
+gnuworld@ircd:/gnuworld/doc$ ./do-db.sh 
+```
+
+```bash
+gnuworld@ircd:/gnuworld/doc$ cd .. 
+```
+
+```bash
+gnuworld@ircd:/gnuworld$/
+```
 
