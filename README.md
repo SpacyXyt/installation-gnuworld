@@ -168,7 +168,7 @@ gnuworld@mail:~$ unzip gnuworld-2025.zip
 Acceder au dossier de GnuWorld
 
 ```bash
-gnuworld@mail:~$ cd gnuworld
+gnuworld@mail:~$ cd gnuworld-2025
 ```
 
 Passer le binaire 'configure' en executable
