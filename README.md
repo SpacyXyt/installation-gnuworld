@@ -95,7 +95,6 @@ sudo ufw enable
 
 Si vous avez des questions ou des doutes sur la configuration, n'hésitez pas à demander avant d'activer le pare-feu.
 
-
 ## 3 Installation de Postgresql
 
 Avant de continuer, GnuWorld necessite une base de donnée Postgresql pour fonctionner nous allons alors l'installer.
@@ -103,6 +102,7 @@ Avant de continuer, GnuWorld necessite une base de donnée Postgresql pour fonct
 ### **⚠️Revenir en sudo avant de continuer**
 
 1. Installer PostgreSQL
+
 ```
 root@mail:~$ sudo apt update
 root@mail:~$ sudo apt install postgresql postgresql-contrib
@@ -135,6 +135,7 @@ ALTER USER gnuworld WITH SUPERUSER CREATEDB CREATEROLE LOGIN;
 ```
 
 Pour quitter psql :
+
 ```sql
 \q
 ```
@@ -370,10 +371,89 @@ numeric = 51
 **Maintenant que le serveur est configurer nous allons le lancer**
 
 Lancer le serveur
+
 ```bash
 gnuworld@ircd:/gnuworld/bin$ ./gnuworld -f GNUWorld.conf -c
 ```
 
-# 8. Pour finir
+# 8. Configuration de cservice et ccontrol
+
+**_Nous allons maintenant ajouter les modules pour pouvoir inviter le X dans notre channel IRC_**
+
+Dans le 'GNUWorld.conf' nous allons décommenter les deux modules:
+
+```bash
+gnuworld@ircd:/gnuworld/bin$ nano GNUWorld.conf
+```
+
+Nous décommenterons alors c'est deux lignes (retirer simplement le # devant les lignes) :
+
+```bash
+#module = libcservice.la cservice.conf
+#module = libccontrol.la ccontrol.conf
+```
+
+25% du travaille viens d'etre terminer, nous devons maintenant modifier les fichiers "cservice.conf" et "ccontrol.conf".
+
+## Cservice
+
+Allons d'habord editer le cservice.conf:
+
+```bash
+gnuworld@ircd:/gnuworld/bin$ nano cservice.conf
+```
+
+Nous allons alors devoir renseigner les identifiant de la base de donnée:
+
+```conf
+sql_user = gnuworld
+sql_pass = ''
+```
+
+Si la base de donnée n'est pas sur le meme serveur penser aussi à modifier l'host:
+
+```conf
+sql_host = 127.0.0.1
+sql_port = 5432
+```
+
+Si vous souhaitez pouvoir vous connecter rapidement après que le serveur ce lanceras ca ce passera ici:
+
+```conf
+# temp en seconde
+login_delay = 10
+```
+
+## Ccontrol
+
+**_Cela va etre identique à l'étape précèdente_**
+
+Allons d'habord editer le ccontrol.conf:
+
+```bash
+gnuworld@ircd:/gnuworld/bin$ nano ccontrol.conf
+```
+
+Nous editerons ainsi le user, et la password.
+
+⚠️ Encore une fois Si la base de donnée n'est pas sur le meme serveur penser aussi à modifier l'host.
+
+```conf
+# database specifications (DO NOT TOUCH THIS)
+sql_host = 127.0.0.1
+sql_port = 5432
+
+# sql_db = Name of the database.
+
+sql_db = ccontrol
+
+#if you dont need to edit this
+sql_user = gnuworld
+sql_pass = ''
+```
+
+# 9. Pour finir
+
 ## Note personnelle
+
 Cette documentation est une documentation non officielle
