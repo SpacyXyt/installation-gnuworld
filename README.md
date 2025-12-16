@@ -95,7 +95,26 @@ sudo ufw enable
 
 Si vous avez des questions ou des doutes sur la configuration, n'hésitez pas à demander avant d'activer le pare-feu.
 
-# 3. Installation de GnuWorld
+
+## 3 Installation de Postgresql
+
+Avant de continuer, GnuWorld necessite une base de donnée Postgresql pour fonctionner nous allons alors l'installer.
+
+### **⚠️Revenir en sudo avant de continuer**
+
+Installer postgresql
+
+```bash
+root@mail:~# apt install postgresql
+```
+
+Une fois fait le lancer
+
+```bash
+root@mail:~# systemctl start postgresql
+```
+
+# 4. Installation de GnuWorld
 
 **Création du nouvelle utilisateur afin de jail le service (Spécifier le mot de passe souhaiter)**
 
@@ -130,48 +149,30 @@ gnuworld@mail:~# cd gnuworld
 Passer le binaire 'configure' en executable
 
 ```bash
-gnuworld@mail:~# chmod +x configure
+gnuworld@mail:~/gnuworld# chmod +x configure
 ```
 
 Configuration du projet GnuWorld pour la compilation
 
 ```bash
-gnuworld@mail:~# ./configure --enable-modules=ccontrol,cservice,openchanfix --with-pgsql-home=/usr/local/pgsql --with-extra-includes=/usr/include/postgresql/
+gnuworld@mail:~/gnuworld# ./configure --enable-modules=ccontrol,cservice,openchanfix --with-pgsql-home=/usr/local/pgsql --with-extra-includes=/usr/include/postgresql/
 ```
 
-## 3.1 Installation de Postgresql
-
-Avant de continuer, GnuWorld necessite une base de donnée Postgresql pour fonctionner nous allons alors l'installer.
-
-### **⚠️Revenir en sudo avant de continuer**
-
-Installer postgresql
-
-```bash
-root@mail:~# apt install postgresql
-```
-
-Une fois fait le lancer
-
-```bash
-root@mail:~# systemctl start postgresql
-```
-
-## 3.2 Compilation de GnuWorld
+## 4.1 Compilation de GnuWorld
 
 Compilation du projet
 
 ```bash
-gnuworld@mail:~# make
+gnuworld@mail:~/gnuworld# make
 ```
 
 Installation du projet nouvellement compiler
 
 ```bash
-gnuworld@mail:~# make install
+gnuworld@mail:~/gnuworld# make install
 ```
 
-## 3.3 Création des bases de données
+## 4.2 Création des bases de données
 
 **NOTE**: Maintenant nous allons crée le SQL et importer les fichiers sql dans la DB!
 
