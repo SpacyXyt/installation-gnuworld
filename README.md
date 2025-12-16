@@ -212,7 +212,7 @@ gnuworld@mail:/gnuworld$ cd
 Rentrer dans le dossier gnuworld/doc (ou ./gnuworld/doc)
 
 ```bash
-gnuworld@mail:/gnuworld$ cd gnuworld/doc
+gnuworld@mail:/gnuworld$ cd gnuworld-2025/doc
 ```
 
 Passer le script 'do-db.sh' en executable
