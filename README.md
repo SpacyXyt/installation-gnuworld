@@ -309,7 +309,7 @@ ircd@mail:~$ kill 368324
 Retourner dans le dossier bin
 
 ```bash
-ircd@mail:~$ cd ircd/bin/
+ircd@mail:~$ cd ../ircd/bin/
 ```
 
 Lancer le serveur
