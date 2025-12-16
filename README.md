@@ -9,9 +9,9 @@ Documentation sur l'installation et la configuration de GnuWorld sous 24.04.3 LT
 - Ubuntu 24.02.3 LTS
 
 ```bash
-root@mail:~# apt update
-root@mail:~# apt upgrade
-root@mail:~# apt-get install -y byacc flex screen make cmake zip perl automake git wget ufw net-tools gcc oidentd libpqxx-dev tcl-dev build-essential
+root@mail:~$ apt update
+root@mail:~$ apt upgrade
+root@mail:~$ apt-get install -y byacc flex screen make cmake zip perl automake git wget ufw net-tools gcc oidentd libpqxx-dev tcl-dev build-essential
 ```
 
 # 2. Configuration du pare-feu avec UFW
@@ -102,16 +102,41 @@ Avant de continuer, GnuWorld necessite une base de donnée Postgresql pour fonct
 
 ### **⚠️Revenir en sudo avant de continuer**
 
-Installer postgresql
-
-```bash
-root@mail:~# apt install postgresql
+1. Installer PostgreSQL
+```
+root@mail:~$ sudo apt update
+root@mail:~$ sudo apt install postgresql postgresql-contrib
 ```
 
-Une fois fait le lancer
+2. Démarrer et activer le service
+
+```
+root@mail:~$ sudo systemctl start postgresql
+root@mail:~$ sudo systemctl enable postgresql
+```
+
+3. Se connecter à PostgreSQL
 
 ```bash
-root@mail:~# systemctl start postgresql
+root@mail:~$ sudo -u postgres psql
+```
+
+Une fois connecté dans l'interface psql, exécutez ces commandes :
+
+```sql
+-- Créer l'utilisateur gnuworld avec un mot de passe (remplacez 'votremotdepasse')
+CREATE USER gnuworld WITH PASSWORD 'votremotdepasse';
+
+-- Donner tous les privilèges (création de bases, connexion, etc.)
+ALTER USER gnuworld WITH SUPERUSER CREATEDB CREATEROLE LOGIN;
+
+-- Vérifier la création
+\du
+```
+
+Pour quitter psql :
+```sql
+\q
 ```
 
 # 4. Installation de GnuWorld
@@ -119,43 +144,43 @@ root@mail:~# systemctl start postgresql
 **Création du nouvelle utilisateur afin de jail le service (Spécifier le mot de passe souhaiter)**
 
 ```bash
-root@mail:~# adduser gnuworld
+root@mail:~$ adduser gnuworld
 ```
 
 Entrer dans l'utilisateur nouvellement crée
 
 ```bash
-root@mail:~# su - gnuworld
+root@mail:~$ su - gnuworld
 ```
 
 Installer le tar du repo github de GnuWorld
 
 ```bash
-gnuworld@ircd:~# wget https://raw.githubusercontent.com/SpacyXyt/installation-gnuworld/refs/heads/Release/gnuworld-2025.zip
+gnuworld@ircd:~$ wget https://raw.githubusercontent.com/SpacyXyt/installation-gnuworld/refs/heads/Release/gnuworld-2025.zip
 ```
 
 Extraire le tar installer depuis le repo
 
 ```bash
-gnuworld@mail:~# unzip gnuworld-2025.zip
+gnuworld@mail:~$ unzip gnuworld-2025.zip
 ```
 
 Acceder au dossier de GnuWorld
 
 ```bash
-gnuworld@mail:~# cd gnuworld
+gnuworld@mail:~$ cd gnuworld
 ```
 
 Passer le binaire 'configure' en executable
 
 ```bash
-gnuworld@mail:~/gnuworld# chmod +x configure
+gnuworld@mail:~/gnuworld$ chmod +x configure
 ```
 
 Configuration du projet GnuWorld pour la compilation
 
 ```bash
-gnuworld@mail:~/gnuworld# ./configure --enable-modules=ccontrol,cservice,openchanfix --with-pgsql-home=/usr/local/pgsql --with-extra-includes=/usr/include/postgresql/
+gnuworld@mail:~/gnuworld$ ./configure --enable-modules=ccontrol,cservice,openchanfix --with-pgsql-home=/usr/local/pgsql --with-extra-includes=/usr/include/postgresql/
 ```
 
 ## 4.1 Compilation de GnuWorld
@@ -163,13 +188,13 @@ gnuworld@mail:~/gnuworld# ./configure --enable-modules=ccontrol,cservice,opencha
 Compilation du projet
 
 ```bash
-gnuworld@mail:~/gnuworld# make
+gnuworld@mail:~/gnuworld$ make
 ```
 
 Installation du projet nouvellement compiler
 
 ```bash
-gnuworld@mail:~/gnuworld# make install
+gnuworld@mail:~/gnuworld$ make install
 ```
 
 ## 4.2 Création des bases de données
