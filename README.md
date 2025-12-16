@@ -85,19 +85,66 @@ sudo ufw enable
 ## ❓ Besoin d'aide ?
 Si vous avez des questions ou des doutes sur la configuration, n'hésitez pas à demander avant d'activer le pare-feu.
 
-# 3. Installation de orientd
+# 3. Installation de GnuWorld
+
+**Création du nouvelle utilisateur afin de jail le service (Spécifier le mot de passe souhaiter)**
 
 ```bash
-root@ircd:~# service oidentd start
+root@mail:~# adduser gnuworld
 ```
 
-**NOTE: Verifier que le service est actif!**
+Entrer dans l'utilisateur nouvellement crée
 
 ```bash
-root@ircd:~# ps aux | grep oidentd
-	oident     10035  0.0  0.0   5252  2188 ?        Ss   May20   0:00 /usr/sbin/oidentd -S -mf -l 10 -u oident -g oident -P 192.168.1.1
-	root      125101  0.0  0.0   6432   736 pts/0    S+   14:46   0:00 grep --color=auto oidentd
+root@mail:~# su - gnuworld
 ```
 
-**NOTE: Verifier que la configuration d'UFW est correcte et que le port 113 est ouvert.**
+Installer le tar du repo github de GnuWorld
+
+```bash
+gnuworld@ircd:~# wget https://github.com/GNUWorldChannel/GNUWorld2021/raw/master/gnuworld_2021.tar.gz
+```
+
+Extraire le tar installer depuis le repo
+
+```bash
+gnuworld@mail:~# tar -xvf gnuworld_2021.tar.gz
+```
+
+Acceder au dossier de GnuWorld
+
+```bash
+gnuworld@mail:~# cd gnuworld 
+```
+
+Passer le binaire 'configure' en executable
+
+```bash
+gnuworld@mail:~# chmod +x configure
+```
+
+Configuration du projet GnuWorld pour la compilation
+
+```bash
+gnuworld@mail:~# ./configure --enable-modules=ccontrol,cservice,openchanfix --with-pgsql-home=/usr/local/pgsql --with-extra-includes=/usr/include/postgresql/ 
+```
+
+Compilation du projet
+
+```bash
+gnuworld@mail:~# make
+```
+
+Installation du projet nouvellement compiler
+
+```bash
+gnuworld@mail:~# make install
+```
+
+**NOTE**: Maintenant nous allons crée le SQL et importer les fichiers sql dans la DB!
+
+```bash
+gnuworld@mail:~# tar -xvf gnuworld_2021.tar.gz
+```
+
 
