@@ -88,7 +88,7 @@ sudo ufw enable
 
 ## Dépannage
 
-- Erreur de connexion SSH ? Vérifiez que le port SSH est bien ouvert et correspond à celui configuré dans /etc/ssh/sshd_config.
+- Erreur de connexion SSH ? Vérifiez que le port SSH est bien ouvert et correspond à celui configuré dans /etc/ssh/sshd_config. Courage !
 - Problème avec les emails ? Assurez-vous que les ports 465 ou 587 sont ouverts si vous utilisez SMTP sécurisé.
 
 ## ❓ Besoin d'aide ?
