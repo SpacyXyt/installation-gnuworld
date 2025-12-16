@@ -452,6 +452,8 @@ sql_user = gnuworld
 sql_pass = ''
 ```
 
+### Vous pouvez alors relancer le serveur Gnuworld, le X devrais alors se connecter au channel par défault (modifiable dans ccontrol.conf). Pour plus d'info sur le X un tuto arriveras bientot.
+
 # 9. Pour finir
 
 ## Note personnelle
