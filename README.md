@@ -108,7 +108,7 @@ gnuworld@ircd:~# wget https://raw.githubusercontent.com/SpacyXyt/installation-gn
 Extraire le tar installer depuis le repo
 
 ```bash
-gnuworld@mail:~# unzip gnuworld-2025.zip
+gnuworld@mail:~# unzip gnuworld-2025.zip -d ./gnuworld
 ```
 
 Acceder au dossier de GnuWorld
